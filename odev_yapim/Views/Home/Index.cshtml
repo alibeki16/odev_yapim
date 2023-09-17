@@ -1,0 +1,29 @@
+﻿@model IEnumerable<odev_yapim.Customer>
+
+@{
+    ViewBag.Title = "Ana Sayfa";
+}
+<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+<main>
+    <br>
+        <h4>Müşteri</h4>
+        <hr />
+        <table id="customers" cellpadding="0" cellspacing="0">
+            <tr>
+                <!-- <th>Musteri ID</th> -->
+                <th>Musteri Adi</th>
+                <th>Musteri Unvani</th>
+                <th>Sipariş Linki</th>
+            </tr>
+            @foreach (Customer customer in Model)
+            {
+                <tr>
+                    <!-- <td>@customer.CustomerID</td> -->
+                    <td>@customer.ContactName</td>
+                    <td>@customer.ContactTitle</td>
+                    <td class="text-center"><a href="@Url.Action("SiparisBilgi", "Home", new { customerId = customer.CustomerID })" class="btn btn-success">Siparişler</a></td>
+                </tr>
+            }
+
+        </table>
+</main>

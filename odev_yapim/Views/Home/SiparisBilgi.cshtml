@@ -1,0 +1,47 @@
+﻿
+@model List<Order>
+
+@{
+    ViewBag.Title = "Sipariş Bilgi";
+    using (var context = new NorthwindEntities())
+    {
+        string customerId = Request.QueryString["customerId"];
+
+        var customer = context.Customers.FirstOrDefault(c => c.CustomerID == customerId);
+
+
+        if (customer != null)
+        {
+            ViewBag.Title += " - " + customer.ContactName;
+        }
+    }
+}
+
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+</head>
+<br>
+<h4>Sipariş Bilgisi</h4>
+<hr />
+@if (Model.Count == 0)
+{
+    <p>Sipariş bilgisi bulunamadı</p>
+}
+else
+{
+    <table id="customers" cellpadding="0" cellspacing="0">
+        <tr>
+            <th>Sipariş No</th>
+            <th>Sipariş Tarihi</th>
+            <th>Sipariş Ülkesi</th>
+        </tr>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderID</td>
+                <td>@(((DateTime)order.OrderDate).ToString("dd.MM.yyyy"))</td>
+                <td>@order.ShipCountry</td>
+            </tr>
+        }
+    </table>
+}
