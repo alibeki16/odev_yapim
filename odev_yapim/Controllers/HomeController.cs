@@ -11,12 +11,12 @@ namespace odev_yapim.Controllers
     public class HomeController : Controller
     {
 
-        public ActionResult Index()
+        public ActionResult Index() // ANA SAYFA MÜŞTERİLERİ LİSTELEME 
         {
             NorthwindEntities nortentitisi = new NorthwindEntities();
             return View(nortentitisi.Customers.ToList());
         }
-        public ActionResult SiparisBilgi(string customerID)
+        public ActionResult SiparisBilgi(string customerID) // MÜŞTERİ SİPARİŞLERİNİ LİSTELEME
         {
             NorthwindEntities nortentitisi = new NorthwindEntities();
             ViewBag.Message = "Siparis Bilgileri.";
@@ -25,12 +25,12 @@ namespace odev_yapim.Controllers
         .ToList();
             return View(customerOrders);
         }
-        public ActionResult MusteriOlustur()
+        public ActionResult MusteriOlustur() // MÜŞTERİ OLUŞTURMA SAYFASI
         {
             ViewBag.Message = "Musteri Oluşturma.";
             return View();
         }
-        public ActionResult AddCustomer(Musterieklemodel model)
+        public ActionResult AddCustomer(Musterieklemodel model) // MÜŞTERİ OLUŞTUR BUTON KARŞILIĞI
         {
             try
             {
@@ -49,7 +49,7 @@ namespace odev_yapim.Controllers
                 emp.Phone = model.Phone;
                 emp.Fax = model.Fax;
 
-                db.Customers.Add(emp);
+                db.Customers.Add(emp); // DB EKLEME
                 db.SaveChanges();
             }
             catch(Exception ex) {

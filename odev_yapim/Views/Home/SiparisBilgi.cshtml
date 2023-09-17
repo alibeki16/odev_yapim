@@ -7,7 +7,7 @@
     {
         string customerId = Request.QueryString["customerId"];
 
-        var customer = context.Customers.FirstOrDefault(c => c.CustomerID == customerId);
+        var customer = context.Customers.FirstOrDefault(c => c.CustomerID == customerId); // CustomerID sütun değeri
 
 
         if (customer != null)
